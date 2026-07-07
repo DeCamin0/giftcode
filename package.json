@@ -1,0 +1,25 @@
+{
+  "name": "kingshot-alliance-bot",
+  "version": "1.0.0",
+  "description": "Discord bot pentru alianța Kingshot: înregistrare Player ID, detectare coduri, notificări, redeem opțional",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "deploy-commands": "node src/deploy-commands.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "cron-parser": "^5.6.1",
+    "discord.js": "^14.26.4",
+    "dotenv": "^16.6.1",
+    "mariadb": "^3.4.2",
+    "node-cron": "^4.6.0"
+  },
+  "overrides": {
+    "undici": "^6.27.0"
+  }
+}

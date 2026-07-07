@@ -1,0 +1,35 @@
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: kingshot-mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      MARIADB_DATABASE: ${DB_NAME:-kingshot_alliance}
+      MARIADB_USER: ${DB_USER:-kingshot_bot}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-change_me}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  bot:
+    build: .
+    container_name: kingshot-bot
+    restart: unless-stopped
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      DB_HOST: mariadb
+
+volumes:
+  mariadb_data:
