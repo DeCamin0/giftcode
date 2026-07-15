@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { registerPlayerForUser } = require('../services/playerRegistration');
-const { autoRedeemForNewPlayer } = require('../services/newPlayerRedeem');
 const { spanishLocales } = require('../utils/commandLocales');
 
 module.exports = {
@@ -32,15 +31,5 @@ module.exports = {
     await interaction.editReply(
       result.embed ? { embeds: [result.embed] } : { content: result.message }
     );
-
-    if (result.ok) {
-      autoRedeemForNewPlayer({
-        client: interaction.client,
-        playerId: result.playerId,
-        discordId: result.discordId,
-        source: 'register',
-        sendPrivate: (content) => interaction.followUp({ content, ephemeral: true }),
-      });
-    }
   },
 };

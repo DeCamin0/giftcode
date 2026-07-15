@@ -1,6 +1,5 @@
 const config = require('../config');
 const { isValidPlayerId, registerPlayerForUser } = require('../services/playerRegistration');
-const { autoRedeemForNewPlayer } = require('../services/newPlayerRedeem');
 const logger = require('../utils/logger');
 
 /**
@@ -38,17 +37,6 @@ async function handleAutoRegisterMessage(message) {
     playerId: content,
     code: result.code,
   });
-
-  if (result.ok) {
-    autoRedeemForNewPlayer({
-      client: message.client,
-      playerId: result.playerId,
-      discordId: result.discordId,
-      source: 'auto-register',
-      sendPrivate: (msg) =>
-        message.reply({ content: msg, allowedMentions: { repliedUser: false } }),
-    });
-  }
 
   return true;
 }

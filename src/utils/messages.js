@@ -263,8 +263,8 @@ const messages = {
 
   redeem: {
     disabled: bilingual(
-      '**Auto-redeem is disabled** on this server.\nManual redeem: https://kingshot.net/gift-codes/redeem\n\nAdmin: set `ENABLE_AUTO_REDEEM=true` in `.env` after testing.',
-      '**El canje automático está desactivado** en este servidor.\nCanje manual: https://kingshot.net/gift-codes/redeem\n\nAdmin: activa `ENABLE_AUTO_REDEEM=true` en `.env` después de probar.'
+      '**Automatic redeem is disabled** on this server (Kingshot Terms of Service).\nRedeem codes manually: https://ks-giftcode.centurygame.com/\nOr: https://kingshot.net/gift-codes/redeem',
+      '**El canje automático está desactivado** en este servidor (Términos de Kingshot).\nCanjea manualmente: https://ks-giftcode.centurygame.com/\nO: https://kingshot.net/gift-codes/redeem'
     ),
     notRegistered: bilingual(
       'You must register first with `/register` or by sending your Player ID.',
@@ -285,8 +285,8 @@ const messages = {
       'Sin permiso. Este comando es solo para R4/Admin.'
     ),
     disabled: bilingual(
-      'Auto-redeem is disabled. Set `ENABLE_AUTO_REDEEM=true` in `.env`.',
-      'Canje automático desactivado. Activa `ENABLE_AUTO_REDEEM=true` en `.env`.'
+      'Bulk redeem is disabled (Kingshot Terms of Service). Members must redeem codes manually.',
+      'Canje masivo desactivado (Términos de Kingshot). Los miembros deben canjear manualmente.'
     ),
     noPlayers: bilingual(
       'No registered players found.',
@@ -325,12 +325,12 @@ const messages = {
         `\`\`\`${code}\`\`\``,
         expiryLine || '',
         bilingual(
-          'Auto-redeem started for all registered players (if enabled).',
-          'Canje automático iniciado para todos los jugadores registrados (si está activado).'
+          'Redeem this code manually in-game or at https://ks-giftcode.centurygame.com/',
+          'Canjea este código manualmente en el juego o en https://ks-giftcode.centurygame.com/'
         ),
         bilingual(
-          'Register with `/register` or ask an admin for `/addplayer` if you are not on the list.',
-          'Regístrate con `/register` o pide a un admin `/addplayer` si no estás en la lista.'
+          'Register with `/register` or ask an admin for `/addplayer` to join the alliance list.',
+          'Regístrate con `/register` o pide a un admin `/addplayer` para unirte a la lista de la alianza.'
         ),
       ]
         .filter(Boolean)
@@ -444,8 +444,8 @@ const messages = {
     40014: bilingual('Code not found or invalid', 'Código no encontrado o inválido'),
     20000: bilingual('Redeem successful', 'Canje exitoso'),
     disabled: bilingual(
-      'Redeem disabled — set ENABLE_AUTO_REDEEM=true in .env',
-      'Canje desactivado — activa ENABLE_AUTO_REDEEM=true en .env'
+      'Redeem disabled — Kingshot Terms of Service prohibit automated redemption',
+      'Canje desactivado — los Términos de Kingshot prohíben el canje automático'
     ),
     loginFailed: bilingual('Player login failed', 'Falló el inicio de sesión del jugador'),
     success: bilingual(

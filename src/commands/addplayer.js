@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { registerPlayerByAdmin } = require('../services/playerRegistration');
-const { autoRedeemForNewPlayer } = require('../services/newPlayerRedeem');
 const { messages } = require('../utils/messages');
 const { spanishLocales } = require('../utils/commandLocales');
 const { requireAdmin } = require('../utils/permissions');
@@ -8,9 +7,9 @@ const { requireAdmin } = require('../utils/permissions');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('addplayer')
-    .setDescription('Add a Player ID to the redeem list (admin only)')
+    .setDescription('Add a Player ID to the alliance list (admin only)')
     .setDescriptionLocalizations(
-      spanishLocales('Añade un Player ID a la lista de canje (solo admin)')
+      spanishLocales('Añade un Player ID a la lista de la alianza (solo admin)')
     )
     .addStringOption((option) =>
       option
@@ -69,15 +68,5 @@ module.exports = {
     await interaction.editReply(
       result.embed ? { embeds: [result.embed] } : { content: result.message }
     );
-
-    if (result.ok) {
-      autoRedeemForNewPlayer({
-        client: interaction.client,
-        playerId: result.playerId,
-        discordId: result.discordId,
-        source: 'addplayer',
-        sendPrivate: (content) => interaction.followUp({ content, ephemeral: true }),
-      });
-    }
   },
 };

@@ -54,7 +54,7 @@ function getSchedulerStatus() {
 
 async function autoRedeemNewCodes(client, newCodes) {
   if (!config.redeem.enabled) {
-    logger.info('Auto-redeem skipped — ENABLE_AUTO_REDEEM=false');
+    logger.info('Auto-redeem skipped — disabled (Kingshot ToS / ENABLE_AUTO_REDEEM=false)');
     return [];
   }
 
